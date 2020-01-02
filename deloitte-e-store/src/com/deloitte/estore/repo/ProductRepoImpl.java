@@ -27,7 +27,13 @@ public class ProductRepoImpl implements ProductRepo{
 
 	@Override
 	public boolean deleteProduct(Product product) {
-		// TODO Auto-generated method stub
+		Connection con= getDbConnection();
+		PreparedStatement pstmt = con.prepareStatement("delete from product where pid=?");
+		pstmt.setInt(1, product.getProductId());
+		if(pstmt.executeUpdate()>0)
+		{
+			return true;
+		}
 		return false;
 	}
 
