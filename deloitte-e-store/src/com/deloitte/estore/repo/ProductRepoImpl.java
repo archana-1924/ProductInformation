@@ -39,7 +39,11 @@ public class ProductRepoImpl implements ProductRepo{
 
 	@Override
 	public boolean updateProduct(Product product) {
-		// TODO Auto-generated method stub
+		Connection con= getDbConnection();
+		PreparedStatement psmt1 = con.prepareStatement("update dept set pname=?, price =? where pid=?");
+		psmt1.setString(1, product.getProductName());
+		psmt1.setFloat(2, product.getPrice());
+		psmt1.setInt(3, product.getProductId());
 		return false;
 	}
 
